@@ -9,21 +9,25 @@
 /* Begin PBXBuildFile section */
 		FC1DDC1A23EBB10E0041F962 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1DDC1923EBB10E0041F962 /* AppDelegate.swift */; };
 		FC1DDC1C23EBB10E0041F962 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1DDC1B23EBB10E0041F962 /* SceneDelegate.swift */; };
-		FC1DDC1E23EBB10E0041F962 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1DDC1D23EBB10E0041F962 /* ViewController.swift */; };
-		FC1DDC2123EBB10E0041F962 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC1DDC1F23EBB10E0041F962 /* Main.storyboard */; };
 		FC1DDC2323EBB1110041F962 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC1DDC2223EBB1110041F962 /* Assets.xcassets */; };
 		FC1DDC2623EBB1110041F962 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC1DDC2423EBB1110041F962 /* LaunchScreen.storyboard */; };
+		FC1DDC3523EBB7340041F962 /* Top100AlbumsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1DDC3423EBB7340041F962 /* Top100AlbumsVC.swift */; };
+		FC1DDC3823EBBA480041F962 /* AlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1DDC3723EBBA480041F962 /* AlbumCell.swift */; };
+		FC1DDC3B23EBBB830041F962 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1DDC3A23EBBB830041F962 /* UIView+Ext.swift */; };
+		FC1DDC3D23EBBFE70041F962 /* AlbumDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1DDC3C23EBBFE70041F962 /* AlbumDetailVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		FC1DDC1623EBB10E0041F962 /* NikeChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NikeChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC1DDC1923EBB10E0041F962 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FC1DDC1B23EBB10E0041F962 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		FC1DDC1D23EBB10E0041F962 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		FC1DDC2023EBB10E0041F962 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FC1DDC2223EBB1110041F962 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FC1DDC2523EBB1110041F962 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FC1DDC2723EBB1110041F962 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FC1DDC3423EBB7340041F962 /* Top100AlbumsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Top100AlbumsVC.swift; sourceTree = "<group>"; };
+		FC1DDC3723EBBA480041F962 /* AlbumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCell.swift; sourceTree = "<group>"; };
+		FC1DDC3A23EBBB830041F962 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
+		FC1DDC3C23EBBFE70041F962 /* AlbumDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +60,49 @@
 		FC1DDC1823EBB10E0041F962 /* NikeChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				FC1DDC3923EBBB6D0041F962 /* Extensions */,
+				FC1DDC3623EBBA210041F962 /* Custom Cell */,
+				FC1DDC2F23EBB2D60041F962 /* Screens */,
+				FC1DDC2E23EBB2330041F962 /* Support */,
+			);
+			path = NikeChallenge;
+			sourceTree = "<group>";
+		};
+		FC1DDC2E23EBB2330041F962 /* Support */ = {
+			isa = PBXGroup;
+			children = (
 				FC1DDC1923EBB10E0041F962 /* AppDelegate.swift */,
 				FC1DDC1B23EBB10E0041F962 /* SceneDelegate.swift */,
-				FC1DDC1D23EBB10E0041F962 /* ViewController.swift */,
-				FC1DDC1F23EBB10E0041F962 /* Main.storyboard */,
 				FC1DDC2223EBB1110041F962 /* Assets.xcassets */,
 				FC1DDC2423EBB1110041F962 /* LaunchScreen.storyboard */,
 				FC1DDC2723EBB1110041F962 /* Info.plist */,
 			);
-			path = NikeChallenge;
+			path = Support;
+			sourceTree = "<group>";
+		};
+		FC1DDC2F23EBB2D60041F962 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				FC1DDC3423EBB7340041F962 /* Top100AlbumsVC.swift */,
+				FC1DDC3C23EBBFE70041F962 /* AlbumDetailVC.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		FC1DDC3623EBBA210041F962 /* Custom Cell */ = {
+			isa = PBXGroup;
+			children = (
+				FC1DDC3723EBBA480041F962 /* AlbumCell.swift */,
+			);
+			path = "Custom Cell";
+			sourceTree = "<group>";
+		};
+		FC1DDC3923EBBB6D0041F962 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				FC1DDC3A23EBBB830041F962 /* UIView+Ext.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,7 +165,6 @@
 			files = (
 				FC1DDC2623EBB1110041F962 /* LaunchScreen.storyboard in Resources */,
 				FC1DDC2323EBB1110041F962 /* Assets.xcassets in Resources */,
-				FC1DDC2123EBB10E0041F962 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,23 +175,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FC1DDC1E23EBB10E0041F962 /* ViewController.swift in Sources */,
+				FC1DDC3523EBB7340041F962 /* Top100AlbumsVC.swift in Sources */,
+				FC1DDC3D23EBBFE70041F962 /* AlbumDetailVC.swift in Sources */,
 				FC1DDC1A23EBB10E0041F962 /* AppDelegate.swift in Sources */,
+				FC1DDC3B23EBBB830041F962 /* UIView+Ext.swift in Sources */,
 				FC1DDC1C23EBB10E0041F962 /* SceneDelegate.swift in Sources */,
+				FC1DDC3823EBBA480041F962 /* AlbumCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		FC1DDC1F23EBB10E0041F962 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FC1DDC2023EBB10E0041F962 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		FC1DDC2423EBB1110041F962 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -286,7 +318,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C39EPG5VUE;
-				INFOPLIST_FILE = NikeChallenge/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/NikeChallenge/Support/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -294,7 +326,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.kevintanner.NikeChallenge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -304,7 +336,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C39EPG5VUE;
-				INFOPLIST_FILE = NikeChallenge/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/NikeChallenge/Support/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -312,7 +344,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.kevintanner.NikeChallenge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
