@@ -25,6 +25,11 @@ class AlbumCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func set(album: Album) {
+        albumNameLabel.text = album.albumName
+        artistLabel.text = album.artist
+    }
+    
     func configure() {
         addSubViews(albumCoverArtImageView, albumNameLabel, artistLabel)
         albumCoverArtImageView.translatesAutoresizingMaskIntoConstraints = false

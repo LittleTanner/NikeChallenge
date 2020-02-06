@@ -11,12 +11,25 @@ import UIKit
 class Top100AlbumsVC: UIViewController {
     
     let tableView = UITableView()
+    
+    var albums: [Album] = [] {
+        didSet {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         configureNavigationBar()
         configureTableView()
+        NetworkManager.shared.getAlbums { [weak self] (albums) in
+            guard let self = self else { return }
+            guard let albums = albums else { return }
+            self.albums = albums
+        }
     }
 
     func configureNavigationBar() {
@@ -39,13 +52,14 @@ class Top100AlbumsVC: UIViewController {
 
 extension Top100AlbumsVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return albums.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: AlbumCell.reuseID) as? AlbumCell else { return UITableViewCell() }
-        cell.artistLabel.text = "Artist Test"
-        cell.albumNameLabel.text = "Album Name Test"
+        
+        let album = albums[indexPath.row]
+        cell.set(album: album)
         return cell
     }
     
