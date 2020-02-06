@@ -22,7 +22,6 @@ class Top100AlbumsVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         configureNavigationBar()
         configureTableView()
         NetworkManager.shared.getAlbums { [weak self] (albums) in
@@ -34,7 +33,6 @@ class Top100AlbumsVC: UIViewController {
 
     func configureNavigationBar() {
         self.title = "Top 100 Albums"
-        
     }
     
     func configureTableView() {
@@ -51,6 +49,7 @@ class Top100AlbumsVC: UIViewController {
 }
 
 extension Top100AlbumsVC: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return albums.count
     }

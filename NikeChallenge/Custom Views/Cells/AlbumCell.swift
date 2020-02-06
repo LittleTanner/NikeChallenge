@@ -12,7 +12,7 @@ class AlbumCell: UITableViewCell {
 
     static let reuseID = "AlbumCell"
     
-    let albumCoverArtImageView = UIImageView()
+    let albumCoverArtImageView = NCAlbumCoverArtImageView(frame: .zero)
     let albumNameLabel = NCTitleLabel(textAlignment: .left, fontSize: 16)
     let artistLabel = NCTitleLabel(fontSize: 14)
     
@@ -28,23 +28,11 @@ class AlbumCell: UITableViewCell {
     func set(album: Album) {
         albumNameLabel.text = album.albumName
         artistLabel.text = album.artist
-
-        NetworkManager.shared.downloadAlbumCoverArt(from: album.albumCoverArt) { [weak self] (albumCoverArt) in
-            guard let self = self else { return }
-            guard let albumCoverArt = albumCoverArt else { return }
-            DispatchQueue.main.async {
-                self.albumCoverArtImageView.image = albumCoverArt
-            }
-        }
+        albumCoverArtImageView.downloadImage(fromURL: album.albumCoverArt)
     }
-    
-    
     
     func configure() {
         addSubViews(albumCoverArtImageView, albumNameLabel, artistLabel)
-        albumCoverArtImageView.translatesAutoresizingMaskIntoConstraints = false
-        albumNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        artistLabel.translatesAutoresizingMaskIntoConstraints = false
         
         accessoryType = .disclosureIndicator
         let padding: CGFloat = 20

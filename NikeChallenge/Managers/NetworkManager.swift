@@ -16,9 +16,6 @@ class NetworkManager {
     private init() {}
     
     func getAlbums(completed: @escaping ([Album]?) -> Void) {
-        
-        // Final Endpoint https://rss.itunes.apple.com/api/v1/us/apple-music/top-albums/all/100/explicit.json
-        
         guard let baseURL = URL(string: "https://rss.itunes.apple.com/") else {
             completed(nil)
             return
@@ -35,8 +32,6 @@ class NetworkManager {
         finalURL.appendPathComponent("100")
         finalURL.appendPathComponent("explicit")
         finalURL.appendPathExtension("json")
-        
-//        print(finalURL)
         
         let dataTask = URLSession.shared.dataTask(with: finalURL) { (data, response, error) in
             if let error = error {
@@ -67,29 +62,6 @@ class NetworkManager {
                 return
             }
         }
-        dataTask.resume()
-    }
-    
-    func getAlbumCoverArt(for URLString: String, completion: @escaping (UIImage?) -> Void) {
-
-        guard let albumCoverArtURL = URL(string: URLString) else { completion(nil); return}
-        
-        print(albumCoverArtURL)
-        
-        let dataTask = URLSession.shared.dataTask(with: albumCoverArtURL) { (data, _, error) in
-            
-            if let error = error {
-                completion(nil)
-                print("Error requesting image: \(error) \(error.localizedDescription)")
-                return
-            }
-            
-            guard let data = data else { completion(nil); return}
-            
-            guard let albumCoverArt = UIImage(data: data) else { completion(nil); return }
-            
-            completion(albumCoverArt)
-        }
         
         dataTask.resume()
     }
@@ -100,7 +72,6 @@ class NetworkManager {
         if let image = cache.object(forKey: cacheKey) { completed(image); return }
         
         guard let url = URL(string: urlString) else { completed(nil); return }
-
         
         let task = URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
             
@@ -110,10 +81,10 @@ class NetworkManager {
             let data = data,
             let image = UIImage(data: data) else { completed(nil); return }
 
-
             self.cache.setObject(image, forKey: cacheKey)
             completed(image)
         }
+        
         task.resume()
     }
 }

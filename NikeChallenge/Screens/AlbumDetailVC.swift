@@ -11,7 +11,7 @@ import SafariServices
 
 class AlbumDetailVC: UIViewController {
     
-    let albumCoverArtImageView = UIImageView()
+    let albumCoverArtImageView = NCAlbumCoverArtImageView(frame: .zero)
     let albumNameLabel = NCTitleLabel(textAlignment: .center, fontSize: 20)
     let artistLabel = NCTitleLabel(fontSize: 16, fontWeight: .medium)
     let genreLabel = NCTitleLabel(fontSize: 14, fontWeight: .regular)
@@ -31,7 +31,6 @@ class AlbumDetailVC: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewController()
@@ -39,41 +38,25 @@ class AlbumDetailVC: UIViewController {
         configureUIElements()
     }
     
-    
     func configureViewController() {
         view.backgroundColor = .systemBackground
     }
     
     func configureUIElements() {
         guard let album = album else { return }
+        
         albumNameLabel.text = album.albumName
-        albumNameLabel.textAlignment = .center
-        
         artistLabel.text = album.artist
-        artistLabel.textAlignment = .center
-        
         genreLabel.text = album.genres.first?.genre
-        genreLabel.textAlignment = .center
-        
         releaseDateLabel.text = album.releaseDate.convertToDisplayFormat()
-        releaseDateLabel.textAlignment = .center
-        
         copyrightInfoLabel.text = album.copyrightInfo
-        copyrightInfoLabel.textAlignment = .center
         
         actionButton.layer.cornerRadius = 10
         actionButton.backgroundColor = .systemGreen
-        
         actionButton.setTitle("See Album in iTunes", for: .normal)
         actionButton.addTarget(self, action: #selector(actionButtonTapped), for: .touchUpInside)
         
-        NetworkManager.shared.downloadAlbumCoverArt(from: album.albumCoverArt) { [weak self] (albumCoverArt) in
-            guard let self = self else { return }
-            guard let albumCoverArt = albumCoverArt else { return }
-            DispatchQueue.main.async {
-                self.albumCoverArtImageView.image = albumCoverArt
-            }
-        }
+        albumCoverArtImageView.downloadImage(fromURL: album.albumCoverArt)
     }
     
     @objc func actionButtonTapped() {
@@ -89,13 +72,12 @@ class AlbumDetailVC: UIViewController {
     
     func layoutUI() {
         view.addSubViews(albumCoverArtImageView, albumNameLabel, artistLabel, genreLabel, releaseDateLabel, copyrightInfoLabel, actionButton)
-        
-        albumCoverArtImageView.translatesAutoresizingMaskIntoConstraints = false
+
         actionButton.translatesAutoresizingMaskIntoConstraints = false
         
         albumCoverArtImageView.contentMode = .scaleAspectFit
         
-        let padding: CGFloat = 10
+        let padding: CGFloat = 20
         
         NSLayoutConstraint.activate([
             albumCoverArtImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -106,24 +88,24 @@ class AlbumDetailVC: UIViewController {
             albumNameLabel.topAnchor.constraint(equalTo: albumCoverArtImageView.bottomAnchor, constant: padding),
             albumNameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
             albumNameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
-            albumNameLabel.heightAnchor.constraint(equalToConstant: 70),
+            albumNameLabel.heightAnchor.constraint(equalToConstant: 80),
             
-            artistLabel.topAnchor.constraint(equalTo: albumNameLabel.bottomAnchor, constant: padding),
+            artistLabel.topAnchor.constraint(equalTo: albumNameLabel.bottomAnchor, constant: 10),
             artistLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
             artistLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
             artistLabel.heightAnchor.constraint(equalToConstant: 18),
             
-            genreLabel.topAnchor.constraint(equalTo: artistLabel.bottomAnchor, constant: padding),
+            genreLabel.topAnchor.constraint(equalTo: artistLabel.bottomAnchor, constant: 10),
             genreLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
             genreLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
             genreLabel.heightAnchor.constraint(equalToConstant: 16),
             
-            releaseDateLabel.topAnchor.constraint(equalTo: genreLabel.bottomAnchor, constant: padding),
+            releaseDateLabel.topAnchor.constraint(equalTo: genreLabel.bottomAnchor, constant: 10),
             releaseDateLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
             releaseDateLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
             releaseDateLabel.heightAnchor.constraint(equalToConstant: 14),
             
-            copyrightInfoLabel.topAnchor.constraint(equalTo: releaseDateLabel.bottomAnchor, constant: padding),
+            copyrightInfoLabel.topAnchor.constraint(equalTo: releaseDateLabel.bottomAnchor, constant: 10),
             copyrightInfoLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
             copyrightInfoLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
             copyrightInfoLabel.heightAnchor.constraint(equalToConstant: 36),
