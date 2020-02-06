@@ -45,39 +45,61 @@ class AlbumDetailVC: UIViewController {
         
         actionButton.layer.cornerRadius = 10
         actionButton.backgroundColor = .systemRed
+        
+        albumCoverArtImageView.image = UIImage(systemName: "folder")
+        albumNameLabel.text = "Album Name"
+        albumNameLabel.textAlignment = .center
+        
+        artistLabel.text = "Artist Name"
+        artistLabel.textAlignment = .center
+        
+        genreLabel.text = "Genre"
+        genreLabel.textAlignment = .center
+        
+        releaseDateLabel.text = "Release Date"
+        releaseDateLabel.textAlignment = .center
+        
+        copyrightInfoLabel.text = "Copyright Info"
+        copyrightInfoLabel.textAlignment = .center
+        
         actionButton.setTitle("Action Button", for: .normal)
         
-        albumCoverArtImageView.contentMode = .scaleAspectFill
+        albumCoverArtImageView.contentMode = .scaleAspectFit
         
         let padding: CGFloat = 10
         
         NSLayoutConstraint.activate([
-            albumCoverArtImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: padding),
-            albumCoverArtImageView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
-            albumCoverArtImageView.heightAnchor.constraint(equalToConstant: 100),
-            albumCoverArtImageView.widthAnchor.constraint(equalToConstant: 100),
+            albumCoverArtImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: padding),
+            albumCoverArtImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 60),
+            albumCoverArtImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -60),
+            albumCoverArtImageView.heightAnchor.constraint(equalTo: view.widthAnchor),
             
             albumNameLabel.topAnchor.constraint(equalTo: albumCoverArtImageView.bottomAnchor, constant: padding),
-            albumNameLabel.centerYAnchor.constraint(equalTo: albumCoverArtImageView.centerYAnchor),
+            albumNameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
+            albumNameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
             albumNameLabel.heightAnchor.constraint(equalToConstant: 20),
             
             artistLabel.topAnchor.constraint(equalTo: albumNameLabel.bottomAnchor, constant: padding),
-            artistLabel.centerYAnchor.constraint(equalTo: albumCoverArtImageView.centerYAnchor),
+            artistLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
+            artistLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
             artistLabel.heightAnchor.constraint(equalToConstant: 20),
             
             genreLabel.topAnchor.constraint(equalTo: artistLabel.bottomAnchor, constant: padding),
-            genreLabel.centerYAnchor.constraint(equalTo: albumCoverArtImageView.centerYAnchor),
+            genreLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
+            genreLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
             genreLabel.heightAnchor.constraint(equalToConstant: 20),
             
             releaseDateLabel.topAnchor.constraint(equalTo: genreLabel.bottomAnchor, constant: padding),
-            releaseDateLabel.centerYAnchor.constraint(equalTo: albumCoverArtImageView.centerYAnchor),
+            releaseDateLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
+            releaseDateLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
             releaseDateLabel.heightAnchor.constraint(equalToConstant: 20),
             
             copyrightInfoLabel.topAnchor.constraint(equalTo: releaseDateLabel.bottomAnchor, constant: padding),
-            copyrightInfoLabel.centerYAnchor.constraint(equalTo: albumCoverArtImageView.centerYAnchor),
+            copyrightInfoLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
+            copyrightInfoLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
             copyrightInfoLabel.heightAnchor.constraint(equalToConstant: 20),
             
-            actionButton.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
+            actionButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
             actionButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             actionButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
             actionButton.heightAnchor.constraint(equalToConstant: 44)
