@@ -39,7 +39,7 @@ class AlbumCell: UITableViewCell {
         
         NSLayoutConstraint.activate([
             albumCoverArtImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            albumCoverArtImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            albumCoverArtImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
             albumCoverArtImageView.heightAnchor.constraint(equalToConstant: 70),
             albumCoverArtImageView.widthAnchor.constraint(equalToConstant: 70),
             

@@ -80,7 +80,7 @@ class AlbumDetailVC: UIViewController {
         let padding: CGFloat = 20
         
         NSLayoutConstraint.activate([
-            albumCoverArtImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            albumCoverArtImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             albumCoverArtImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 60),
             albumCoverArtImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -60),
             albumCoverArtImageView.heightAnchor.constraint(lessThanOrEqualTo: view.widthAnchor),
