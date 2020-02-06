@@ -11,6 +11,7 @@ import UIKit
 class NetworkManager {
     
     static let shared = NetworkManager()
+    let cache = NSCache<NSString, UIImage>()
     
     private init() {}
     
@@ -67,5 +68,52 @@ class NetworkManager {
             }
         }
         dataTask.resume()
+    }
+    
+    func getAlbumCoverArt(for URLString: String, completion: @escaping (UIImage?) -> Void) {
+
+        guard let albumCoverArtURL = URL(string: URLString) else { completion(nil); return}
+        
+        print(albumCoverArtURL)
+        
+        let dataTask = URLSession.shared.dataTask(with: albumCoverArtURL) { (data, _, error) in
+            
+            if let error = error {
+                completion(nil)
+                print("Error requesting image: \(error) \(error.localizedDescription)")
+                return
+            }
+            
+            guard let data = data else { completion(nil); return}
+            
+            guard let albumCoverArt = UIImage(data: data) else { completion(nil); return }
+            
+            completion(albumCoverArt)
+        }
+        
+        dataTask.resume()
+    }
+    
+    func downloadAlbumCoverArt(from urlString: String, completed: @escaping (UIImage?) -> Void) {
+        let cacheKey = NSString(string: urlString)
+        
+        if let image = cache.object(forKey: cacheKey) { completed(image); return }
+        
+        guard let url = URL(string: urlString) else { completed(nil); return }
+
+        
+        let task = URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
+            
+            guard let self = self,
+                error == nil,
+            let response = response as? HTTPURLResponse, response.statusCode == 200,
+            let data = data,
+            let image = UIImage(data: data) else { completed(nil); return }
+
+
+            self.cache.setObject(image, forKey: cacheKey)
+            completed(image)
+        }
+        task.resume()
     }
 }

@@ -27,6 +27,7 @@ struct Album: Codable {
         case genres
         case releaseDate
         case copyrightInfo = "copyright"
+        case albumURL = "url"
     }
     
     let albumCoverArt: String
@@ -35,6 +36,7 @@ struct Album: Codable {
     let genres: [Genre]
     let releaseDate: String
     let copyrightInfo: String
+    let albumURL: String
 }
 
 // 4th Level

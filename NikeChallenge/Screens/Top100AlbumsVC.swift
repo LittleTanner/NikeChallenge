@@ -64,8 +64,8 @@ extension Top100AlbumsVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedAlbumCell = indexPath.row
-        let destVC = AlbumDetailVC()
+        let selectedAlbumCell = albums[indexPath.row]
+        let destVC = AlbumDetailVC(album: selectedAlbumCell)
         
         navigationController?.pushViewController(destVC, animated: true)
     }

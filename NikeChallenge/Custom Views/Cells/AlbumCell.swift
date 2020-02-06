@@ -13,8 +13,8 @@ class AlbumCell: UITableViewCell {
     static let reuseID = "AlbumCell"
     
     let albumCoverArtImageView = UIImageView()
-    let albumNameLabel = UILabel()
-    let artistLabel = UILabel()
+    let albumNameLabel = NCTitleLabel(textAlignment: .left, fontSize: 16)
+    let artistLabel = NCTitleLabel(fontSize: 14)
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -28,7 +28,17 @@ class AlbumCell: UITableViewCell {
     func set(album: Album) {
         albumNameLabel.text = album.albumName
         artistLabel.text = album.artist
+
+        NetworkManager.shared.downloadAlbumCoverArt(from: album.albumCoverArt) { [weak self] (albumCoverArt) in
+            guard let self = self else { return }
+            guard let albumCoverArt = albumCoverArt else { return }
+            DispatchQueue.main.async {
+                self.albumCoverArtImageView.image = albumCoverArt
+            }
+        }
     }
+    
+    
     
     func configure() {
         addSubViews(albumCoverArtImageView, albumNameLabel, artistLabel)
@@ -37,7 +47,7 @@ class AlbumCell: UITableViewCell {
         artistLabel.translatesAutoresizingMaskIntoConstraints = false
         
         accessoryType = .disclosureIndicator
-        let padding: CGFloat = 12
+        let padding: CGFloat = 20
         
         NSLayoutConstraint.activate([
             albumCoverArtImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
@@ -45,15 +55,15 @@ class AlbumCell: UITableViewCell {
             albumCoverArtImageView.heightAnchor.constraint(equalToConstant: 70),
             albumCoverArtImageView.widthAnchor.constraint(equalToConstant: 70),
             
-            albumNameLabel.topAnchor.constraint(equalTo: albumCoverArtImageView.topAnchor, constant: padding),
+            albumNameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 4),
             albumNameLabel.leadingAnchor.constraint(equalTo: albumCoverArtImageView.trailingAnchor, constant: padding),
-            albumNameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: padding),
-            albumNameLabel.heightAnchor.constraint(equalToConstant: 30),
+            albumNameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
+            albumNameLabel.heightAnchor.constraint(equalToConstant: 48),
             
-            artistLabel.bottomAnchor.constraint(equalTo: albumCoverArtImageView.bottomAnchor),
+            artistLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -4),
             artistLabel.leadingAnchor.constraint(equalTo: albumCoverArtImageView.trailingAnchor, constant: padding),
-            artistLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: padding),
-            artistLabel.heightAnchor.constraint(equalToConstant: 30),
+            artistLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
+            artistLabel.heightAnchor.constraint(equalToConstant: 22),
         ])
     }
 }
